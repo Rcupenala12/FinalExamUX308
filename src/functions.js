@@ -1,41 +1,62 @@
-export function colour_mix(rgb_colour1, rgb_colour2) {
-    const valid = ['red', 'blue', 'green'];
-    if (!valid.includes(rgb_colour1) || !valid.includes(rgb_colour2)) return "Error";
-
-    const mix = [rgb_colour1, rgb_colour2].sort().join('');
-    const combinations = {
-        'blueblue': 'blue',
-        'greenblue': 'aqua',
-        'greengreen': 'green',
-        'greenred': 'yellow',
-        'redblue': 'fuchsia',
-        'redred': 'red'
-    };
-    return combinations[mix] || "Error";
-}
-
-export function largest_product(val1, val2, val3) {
-    let values = [val1, val2, val3].sort((a, b) => b - a);
-    return values[0] * values[1];
-}
-
-export function day_of_the_week(day_num) {
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    if (day_num < 1 || day_num > 7) return "Error";
-    return days[day_num - 1];
-}
-
-export function pay_raise(status, years, salary) {
-    if (status === 'F') {
-        if (years >= 10) return salary * 1.05;
-        if (years < 4) return salary * 1.015;
-    } else if (status === 'P') {
-        if (years > 10) return salary * 1.03;
-        if (years < 4) return salary * 1.01;
+export function colour_mix(c1, c2) {
+    const valid = ['red', 'green', 'blue'];
+    if (!valid.includes(c1) || !valid.includes(c2)) return 'Error';
+  
+    if (c1 === c2) return c1;
+  
+    const mix = [c1, c2].sort().join('-');
+    switch (mix) {
+      case 'blue-green': return 'aqua';
+      case 'blue-red': return 'fuchsia';
+      case 'green-red': return 'yellow';
+      default: return 'Error';
     }
-    return salary * 1.02;
-}
-
-export function is_leap(year) {
-    return (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0));
-}
+  }
+  
+  // 2. Largest Product
+  export function largest_product(val1, val2, val3) {
+    const nums = [val1, val2, val3].sort((a, b) => b - a);
+    return nums[0] * nums[1];
+  }
+  
+  // 3. Day of the Week
+  export function day_of_the_week(day_num) {
+    const days = {
+      1: "Sunday",
+      2: "Monday",
+      3: "Tuesday",
+      4: "Wednesday",
+      5: "Thursday",
+      6: "Friday",
+      7: "Saturday"
+    };
+    return days[day_num] || "Error";
+  }
+  
+  // 4. Pay Raise
+  export function pay_raise(status, years, salary) {
+    let raise = 0;
+  
+    if (status === 'F') {
+      if (years >= 10) raise = 0.05;
+      else if (years < 4) raise = 0.015;
+      else raise = 0.02;
+    } else if (status === 'P') {
+      if (years > 10) raise = 0.03;
+      else if (years < 4) raise = 0.01;
+      else raise = 0.02;
+    }
+  
+    return parseFloat((salary * (1 + raise)).toFixed(2));
+  }
+  
+  // 5. Leap Year
+  export function is_leap(year) {
+    if (year % 4 !== 0) return false;
+    else if (year % 100 !== 0) return true;
+    else if (year % 400 === 0) return true;
+    else return false;
+  }
+  
+  
+  

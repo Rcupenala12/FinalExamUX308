@@ -1,15 +1,21 @@
 import React from 'react';
-import { ColourMixTest, LargestProductTest, DayOfWeekTest, PayRaiseTest, LeapYearTest } from './components';
+import {
+  ColourMixComponent,
+  LargestProductComponent,
+  DayOfTheWeekComponent,
+  PayRaiseComponent,
+  LeapYearComponent
+} from './components.jsx';
 
 function App() {
   return (
     <div>
-      <h1>UX308 Final Exam Tests</h1>
-      <ColourMixTest />
-      <LargestProductTest />
-      <DayOfWeekTest />
-      <PayRaiseTest />
-      <LeapYearTest />
+      <h1>UX308 Final Exam</h1>
+      <ColourMixComponent />
+      <LargestProductComponent />
+      <DayOfTheWeekComponent />
+      <PayRaiseComponent />
+      <LeapYearComponent />
     </div>
   );
 }
